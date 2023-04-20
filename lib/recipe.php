@@ -39,3 +39,39 @@ function saveRecipe(PDO $pdo, int $category, string $title, string $description,
   $query->bindParam(':image', $image, PDO::PARAM_STR);
   return $query->execute();
 }
+
+function GetRecipebyTitle(PDO $pdo, string $title){
+  $query = $pdo->prepare("SELECT * FROM recipes WHERE title = :title");
+  $query->bindParam(':title', $title, PDO::PARAM_STR);
+  $query->execute();
+  return $query->fetch();
+}
+
+function saveModification(PDO $pdo, int $id, string $ingredients, string $instructions){
+  $sql = "UPDATE recipes SET ingredients = :ingredients, instructions = :instructions WHERE recipes.id = :id";
+  $query = $pdo->prepare($sql);
+  $query->bindParam(':id', $id, PDO::PARAM_INT);
+  $query->bindParam(':ingredients', $ingredients, PDO::PARAM_STR);  
+  $query->bindParam(':instructions', $instructions, PDO::PARAM_STR);
+  return $query->execute();
+  
+}
+function GetIdByTitle(PDO $pdo, string $title){
+  $query = $pdo->prepare("SELECT `id` FROM recipes WHERE `title` = :title");
+  $query->bindParam(':title', $title, PDO::PARAM_STR);
+  $query->execute();
+  return $query->fetch();
+}
+
+function deleteRecipe(PDO $pdo, int $id){
+  $sql = "DELETE FROM recipes WHERE `recipes`.`id` = :id";
+  $query = $pdo->prepare($sql);
+  $query->bindParam(':id', $id, PDO::PARAM_INT);
+  return $query->execute();
+}
+function GetTitlebyId(PDO $pdo, int $id){
+  $query = $pdo->prepare("SELECT `title` FROM recipes WHERE `id` = :id");
+  $query->bindParam(':id', $id, PDO::PARAM_INT);
+  $query->execute();
+  return $query->fetch();
+}

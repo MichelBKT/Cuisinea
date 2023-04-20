@@ -9,8 +9,9 @@ if(!isset($_SESSION['user'])){
 }
 
 $errors = [];
-$messages = [];
+$messages = [];    ;
 $recipe =[
+    'id' => '',
     'title' => '',
     'description' => '',
     'ingredients' => '',
@@ -37,7 +38,23 @@ if (isset($_POST['saveRecipe'])) {
             $errors[] = 'Le fichier n\'est pas une image';
         }
     }
+    
+
+    
+    $recipe = [
+        'title' =>  ucfirst($_POST['title']),
+        'description' => $_POST['description'],
+        'ingredients' => $_POST['ingredients'],
+        'instructions' => $_POST['instructions'],
+        'category_id' => $_POST['category'],
+    ];
     if (!$errors){
+        $modify = GetRecipebyTitle($pdo, $_POST['title']);
+        if (ucfirst($_POST['title']) === $modify['title']){
+            $errors[] = "La recette $_POST[title] existe déjà, voulez-vous la modifier?";
+            $result = GetIdByTitle($pdo, $recipe['title']);
+        }
+    else{
         $res = saveRecipe($pdo, $_POST['category'], $_POST['title'], $_POST['description'], $_POST['ingredients'], $_POST['instructions'], $fileName);
     
         if ($res) {
@@ -46,18 +63,12 @@ if (isset($_POST['saveRecipe'])) {
         $errors[] = 'La recette n\' a pas été ajoutée';
         }
     }
-    $recipe = [
-        'title' => $_POST['title'],
-        'description' => $_POST['description'],
-        'ingredients' => $_POST['ingredients'],
-        'instructions' => $_POST['instructions'],
-        'category_id' => $_POST['category'],
-    ]; 
 }
-
+}
 ?>
 
 <h1>Ajouter une recette</h1>
+
 
 <?php foreach ($messages as $message){ ?>
     <div class="alert alert-success">
@@ -71,7 +82,16 @@ if (isset($_POST['saveRecipe'])) {
         <?=$error; ?>
     </div>
 
-<?php } ?>
+<?php  
+; 
+ if (isset($error)){ ?>
+    <div class="mb-3">
+    <a href="recette.php?id=<?php echo $result['id']; ?>"class="btn btn-primary">Oui</a>
+    <a href='index.php'class="btn btn-dark">Non</a>
+    </div>
+<?php };
+}
+?>
 
 <form method = "POST" enctype="multipart/form-data">
     <div class="mb-3">
@@ -106,6 +126,6 @@ if (isset($_POST['saveRecipe'])) {
     <input type="submit" value="Enregistrer" name="saveRecipe" class="btn btn-primary">
 
 </form>
- <?php
+ <?php 
  require_once('templates/footer.php');
  ?>

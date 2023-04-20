@@ -17,6 +17,7 @@ if ($recipe){
 
 
 
+
 <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
   <div class="col-10 col-sm-8 col-lg-6">
     <img src="<?= getRecipeImage($recipe['image']); ?>" class="d-block mx-lg-auto img-fluid" alt="<?= $recipe['title']; ?>" width="700" height="500" loading="lazy">
@@ -24,6 +25,8 @@ if ($recipe){
   <div class="col-lg-6">
     <h1 class="display-5 fw-bold lh-1 mb-3"><?= $recipe['title']; ?></h1>
     <p class="lead"><?=$recipe['description'];?></p>
+    <div class="mb-3">
+    <a href="modification_recette.php?id=<?php echo $id?>"class="btn btn-primary">Modifier la recette</a>
   </div>
 </div>
 
