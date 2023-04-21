@@ -27,7 +27,8 @@ foreach ($messages as $message) { ?>
     </div>
 
 <?php } ?>
-
+<div class="container-fluid d-flex justify-content-center">
+    <div class="row align-items-center">
 <h1>Inscription</h1>
 
 
@@ -42,7 +43,7 @@ foreach ($messages as $message) { ?>
         <input type="last_name" name="last_name" id="last_name" class="form-control">
     </div>
     <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
+        <label for="email" class="form-label">E-mail</label>
         <input type="email" name="email" id="email" class="form-control">
     </div>
     <div class="mb-3">
@@ -52,6 +53,8 @@ foreach ($messages as $message) { ?>
     <input type="submit" value="Inscription" name="addUser" class="btn btn-primary">
 
 </form>
+    </div>
+</div>
  <?php
  require_once('templates/footer.php');
  ?>

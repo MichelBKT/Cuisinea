@@ -20,12 +20,12 @@ $currentPage = basename($_SERVER['SCRIPT_NAME']);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="bg-image bg-size-half" style="background-image: url('./assets/images/background.jpg')">
-<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-5">
 
-    <nav class="navbar navbar-expand-lg container-fluid">
+    <nav class="navbar fixed-top navbar-expand-lg container-fluid border-bottom bg-dark">
         <div class="col-md-5-lg-6 mb-2 me-2">
     <a class="navbar-brand" href="index.php">
-      <img src="./assets/images/logo-horizontal.jpg" alt="Bootstrap" width="100" height="50">
+      <img src="./assets/images/logo-horizontal.jpg" alt="Bootstrap">
     </a>
   </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,9 +34,9 @@ $currentPage = basename($_SERVER['SCRIPT_NAME']);
     </svg>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav container-fluid">
+      <ul class= "navbar-nav container-fluid">
       <?php foreach($mainMenu as $key => $value) { ?>
-            <li class="nav-item" ><a href="<?= $key; ?>" class="nav-link<?php if ($currentPage === $key) {echo ' active bg-white rounded';} ?>" style="color: #ff8264"><?= $value ;?></a></li>
+            <li class="nav-item" ><a href="<?= $key; ?>" class="nav-link<?php if ($currentPage === $key) {echo ' active';} ?>"><?= $value ;?></a></li>
             <?php } ?>
       </ul>
       <div class="container-fluid p-3">

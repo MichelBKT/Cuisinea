@@ -66,9 +66,9 @@ if (isset($_POST['saveRecipe'])) {
 }
 }
 ?>
-<div class="d-flex justify-content-center">
+<div class="container-fluid d-flex justify-content-center">
     <div class="row align-items-center">
-<h1>Ajouter une recette</h1>
+<h1 class="col d-flex justify-content-center">Ajouter une recette</h1>
 
 
 <?php foreach ($messages as $message){ ?>
@@ -96,25 +96,24 @@ if (isset($_POST['saveRecipe'])) {
 
 
     <form method = "POST" enctype="multipart/form-data">
-            <div class="mb-3 d-flex align-items-center">
+        <div class="ms-5 p-3 mb-3 d-flex align-items-center">
             <label for="title" class="form-label">Titre</label>
-            <input type="text" name="title" id="title" class="form-control-lg" value="<?=$recipe['title'] ;?>">
-            
+            <input type="text" name="title" id="title" class="form-control-lg" value="<?=$recipe['title'] ;?>">    
         </div>
-        <div class="mb-3 d-flex align-items-center">
+        <div class="ms-4 mb-3 d-flex align-items-center">
             <label for="description" class="form-label">Description</label>
             <textarea name="description" id="description" cols="50" rows="3" class="form-control"><?=$recipe['description'] ;?></textarea>
             
         </div>
-        <div class="mb-3 d-flex align-items-center">
+        <div class="ms-4 mb-3 d-flex align-items-center">
             <label for="ingredients" class="form-label">Ingrédients</label>
             <textarea name="ingredients" id="ingredients" cols="50" rows="3" class="form-control"><?=$recipe['ingredients'] ;?></textarea>
         </div>
-        <div class="mb-3 d-flex align-items-center">
+        <div class="ms-4 mb-3 d-flex align-items-center">
             <label for="instructions" class="form-label">Instructions</label>
             <textarea name="instructions" id="instructions" cols="50" rows="3" class="form-control"><?=$recipe['instructions'] ;?></textarea>
         </div>
-        <div class="mb-3 d-flex align-items-center">
+        <div class="ms-4 mb-3 d-flex align-items-center">
             <label for="category" class="form-label">Catégorie</label>
             <select name="category" id="category" class="form-select-sm">
                 <?php foreach ($categories as $category){
@@ -123,11 +122,11 @@ if (isset($_POST['saveRecipe'])) {
                 <?php } ?>
             </select>
         </div>
-        <div class="mb-3">
+        <div class="ms-4 mb-3 d-flex align-items-center">
             <label for="file" class="form-label">Image</label>
             <input type="file" name="file" id="file">
         </div>
-        <input type="submit" value="Enregistrer" name="saveRecipe" class="btn btn-primary">
+        <input type="submit" value="Enregistrer" name="saveRecipe" class="btn btn-primary col d-flex justify-content-center">
     </div>                
 </form>
 </div>

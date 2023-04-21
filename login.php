@@ -19,6 +19,8 @@ if (isset($_POST['loginUser'])){
 }
 
 ?>
+<div class="container-fluid d-flex justify-content-center">
+    <div class="row align-items-center">
 <h1>Connexion</h1>
 
 <?php foreach ($messages as $message) { ?>
@@ -36,7 +38,7 @@ if (isset($_POST['loginUser'])){
 <?php } ?>
 <form method = "POST" enctype="multipart/form-data">
     <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
+        <label for="email" class="form-label">E-mail</label>
         <input type="email" name="email" id="email" class="form-control">
     </div>
 
@@ -48,3 +50,5 @@ if (isset($_POST['loginUser'])){
     <input type="submit" value="Connexion" name="loginUser" class="btn btn-primary">
 
 </form>
+    </div>
+</div>

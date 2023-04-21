@@ -8,7 +8,7 @@ if(!isset($_SESSION['user'])){
     header('location: login.php');
 }
 $id = (int)$_GET['id'];
-$recipe = getRecipeById($pdo, $id)['title'];
+$recipe = getRecipeById($pdo, $id);
 $errors = [];
 $messages = [];
 
@@ -97,15 +97,15 @@ foreach ($messages as $message){ ?>
 <form method = "POST" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="title" class="form-label">Titre</label>
-        <input type="text" name="title" id="title" class="form-control" value="<?=$recipe;?>">
+        <input type="text" name="title" id="title" class="form-control" value="<?=$recipe['title'];?>">
     </div>
     <div class="mb-3">
         <label for="ingredients" class="form-label ingredients">Ingrédients</label>
-        <textarea name="ingredients" id="ingredients" cols="30" rows="5" class="form-control"></textarea>
+        <textarea name="ingredients" id="ingredients" cols="30" rows="5" class="form-control" placeholder="<?=$recipe['ingredients'];?>"></textarea>
     </div>
     <div class="mb-3">
         <label for="instructions" class="form-label instructions">Instructions</label>
-        <textarea name="instructions" id="instructions" cols="30" rows="5" class="form-control"></textarea>
+        <textarea name="instructions" id="instructions" cols="30" rows="5" class="form-control" placeholder="<?=$recipe['instructions'];?>"></textarea>
     </div>
     <div class="mb-3">
         <label for="file" class="form-label">Image</label>
