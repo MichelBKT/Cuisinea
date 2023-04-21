@@ -1,0 +1,15 @@
+body{
+    color: #fff;
+
+}
+footer{
+    color:#fff;
+}
+.bg-image{
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat-y;
+}
+.bg-size-half{
+    background-size: 100%;
+}

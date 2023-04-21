@@ -42,7 +42,7 @@ if (isset($_POST['saveRecipe'])) {
 
     
     $recipe = [
-        'title' =>  ucfirst($_POST['title']),
+        'title' =>  $_POST['title'] = ucfirst($_POST['title']),
         'description' => $_POST['description'],
         'ingredients' => $_POST['ingredients'],
         'instructions' => $_POST['instructions'],
@@ -50,7 +50,7 @@ if (isset($_POST['saveRecipe'])) {
     ];
     if (!$errors){
         $modify = GetRecipebyTitle($pdo, $_POST['title']);
-        if (ucfirst($_POST['title']) === $modify['title']){
+        if (($_POST['title']) === $modify['title']){
             $errors[] = "La recette $_POST[title] existe déjà, voulez-vous la modifier?";
             $result = GetIdByTitle($pdo, $recipe['title']);
         }
@@ -66,7 +66,8 @@ if (isset($_POST['saveRecipe'])) {
 }
 }
 ?>
-
+<div class="d-flex justify-content-center">
+    <div class="row align-items-center">
 <h1>Ajouter une recette</h1>
 
 
@@ -93,39 +94,44 @@ if (isset($_POST['saveRecipe'])) {
 }
 ?>
 
-<form method = "POST" enctype="multipart/form-data">
-    <div class="mb-3">
-        <label for="title" class="form-label">Titre</label>
-        <input type="text" name="title" id="title" class="form-control" value="<?=$recipe['title'] ;?>">
-    </div>
-    <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea name="description" id="description" cols="30" rows="5" class="form-control"><?=$recipe['description'] ;?></textarea>
-    </div>
-    <div class="mb-3">
-        <label for="ingredients" class="form-label">Ingrédients</label>
-        <textarea name="ingredients" id="ingredients" cols="30" rows="5" class="form-control"><?=$recipe['ingredients'] ;?></textarea>
-    </div>
-    <div class="mb-3">
-        <label for="instructions" class="form-label">Instructions</label>
-        <textarea name="instructions" id="instructions" cols="30" rows="5" class="form-control"><?=$recipe['instructions'] ;?></textarea>
-    </div>
-    <div class="mb-3">
-        <label for="category" class="form-label">Catégorie</label>
-        <select name="category" id="category" class="form-select">
-            <?php foreach ($categories as $category){
-            ?>
-            <option value="<?=$category['id'];?>" <?php if ($recipe['category_id'] == $category['id']) {echo 'selected="selected"';}?>><?=$category['name']; ?></option>
-            <?php } ?>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="file" class="form-label">Image</label>
-        <input type="file" name="file" id="file">
-    </div>
-    <input type="submit" value="Enregistrer" name="saveRecipe" class="btn btn-primary">
 
+    <form method = "POST" enctype="multipart/form-data">
+            <div class="mb-3 d-flex align-items-center">
+            <label for="title" class="form-label">Titre</label>
+            <input type="text" name="title" id="title" class="form-control-lg" value="<?=$recipe['title'] ;?>">
+            
+        </div>
+        <div class="mb-3 d-flex align-items-center">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" id="description" cols="50" rows="3" class="form-control"><?=$recipe['description'] ;?></textarea>
+            
+        </div>
+        <div class="mb-3 d-flex align-items-center">
+            <label for="ingredients" class="form-label">Ingrédients</label>
+            <textarea name="ingredients" id="ingredients" cols="50" rows="3" class="form-control"><?=$recipe['ingredients'] ;?></textarea>
+        </div>
+        <div class="mb-3 d-flex align-items-center">
+            <label for="instructions" class="form-label">Instructions</label>
+            <textarea name="instructions" id="instructions" cols="50" rows="3" class="form-control"><?=$recipe['instructions'] ;?></textarea>
+        </div>
+        <div class="mb-3 d-flex align-items-center">
+            <label for="category" class="form-label">Catégorie</label>
+            <select name="category" id="category" class="form-select-sm">
+                <?php foreach ($categories as $category){
+                ?>
+                <option value="<?=$category['id'];?>" <?php if ($recipe['category_id'] == $category['id']) {echo 'selected="selected"';}?>><?=$category['name']; ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="file" class="form-label">Image</label>
+            <input type="file" name="file" id="file">
+        </div>
+        <input type="submit" value="Enregistrer" name="saveRecipe" class="btn btn-primary">
+    </div>                
 </form>
+</div>
+</div>
  <?php 
  require_once('templates/footer.php');
  ?>

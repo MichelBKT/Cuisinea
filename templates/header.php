@@ -16,30 +16,38 @@ $currentPage = basename($_SERVER['SCRIPT_NAME']);
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="./assets/css/override-bootstrap.css" rel="stylesheet">
+    <link href="./assets/css/style.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
- 
-   <div class="container">
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-        <div class="col-md-3 mb-2 mb-md-0">
-            <a href="index.php" class="d-inline-flex link-body-emphasis text-decoration-none">
-            <img src="./assets/images/logo-cuisinea-horizontal.jpg" alt="Logo Cuisinea" width= "250">
-            </a>
-        </div>
+<body class="bg-image bg-size-half" style="background-image: url('./assets/images/background.jpg')">
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
 
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 nav nav-pills">
-            <?php foreach($mainMenu as $key => $value) { ?>
-            <li class="nav-item"><a href="<?= $key; ?>" class="nav-link <?php if ($currentPage === $key) {echo 'active';} ?>"><?= $value ;?></a></li>
+    <nav class="navbar navbar-expand-lg container-fluid">
+        <div class="col-md-5-lg-6 mb-2 me-2">
+    <a class="navbar-brand" href="index.php">
+      <img src="./assets/images/logo-horizontal.jpg" alt="Bootstrap" width="100" height="50">
+    </a>
+  </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-list" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+    </svg>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav container-fluid">
+      <?php foreach($mainMenu as $key => $value) { ?>
+            <li class="nav-item" ><a href="<?= $key; ?>" class="nav-link<?php if ($currentPage === $key) {echo ' active bg-white rounded';} ?>" style="color: #ff8264"><?= $value ;?></a></li>
             <?php } ?>
-        </ul>
-
-        <div class="col-md-3 text-end">
+      </ul>
+      <div class="container-fluid p-3">
             <?php if(!isset($_SESSION['user'])){?>
-                <a href="login.php" class="btn btn-outline-primary me-2">Se connecter</a>
-                <a href="inscription.php" class="btn btn-outline-primary me-2">S'inscrire</a>
+                <a href="login.php" class="btn btn-outline-primary col-md-5-lg-6 mb-2 me-2">Se connecter</a>
+                <a href="inscription.php" class="btn btn-outline-primary col-md-5-lg-6 mb-2 me-2">S'inscrire</a>
             <?php } else { ?>
                 <a href="logout.php" class="btn btn-primary">Se déconnecter</a>
             <?php } ?>
-        </div>
-    </header>
+    </div>
+  </div>
+</nav>
+</header>
+
